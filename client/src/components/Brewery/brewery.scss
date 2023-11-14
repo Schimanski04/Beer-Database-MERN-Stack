@@ -1,6 +1,33 @@
 @import "../../variables";
 
 .brewery {
-    width: 18%;
-    padding: 0.6em 1.2em;
+    width: 100%;
+    padding: 0.6em 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+        width: 40%;
+    }
+
+    h2 {
+        color: #0f5911;
+        width: max-content;
+        font-size: 3rem;
+        border-bottom: 1px solid $myGold;
+    }
+
+    .brewery-info {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.brewery.reverse {
+    flex-direction: row-reverse;
 }

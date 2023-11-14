@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
-const Details = () => {
-    useDocumentTitle("Bookstoria. – Details page")
+export const Details = () => {
+    useDocumentTitle("Brewery details | Prazdroj")
     const [brewery, setBrewery] = useState({})
     const { id } = useParams()
 

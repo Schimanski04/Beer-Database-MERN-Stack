@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
 const schema = yup.object().shape({
     name: yup
@@ -16,7 +15,6 @@ const schema = yup.object().shape({
         .required("This field is required"),
     phoneNumber: yup
         .string()
-        .matches(phoneRegExp, "Phone number is not valid")
         .required("This field is required"),
     email: yup
         .string()
@@ -24,7 +22,8 @@ const schema = yup.object().shape({
         .required("This field is required")
 })
 
-const Create = () => {
+export const Create = () => {
+    useDocumentTitle("New brewery | Prazdroj")
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
 

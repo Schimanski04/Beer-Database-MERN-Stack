@@ -2,9 +2,11 @@ import Beer from "../../../components/Beer"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 import "./index.scss"
 
-const Index = () => {
+export const Index = () => {
+    useDocumentTitle("Beers | Prazdroj")
     const [beers, setBeers] = useState([])
 
     useEffect(() =>{
@@ -21,7 +23,7 @@ const Index = () => {
     return (
         <main>
             <h1>List of all beers</h1>
-            <Link to="/beers/create" className="link">Create</Link>
+            <Link to="/beers/create" className="link-btn">Create</Link>
 
             <div className="beers">
                 {

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
 const schema = yup.object().shape({
     name: yup
@@ -22,7 +23,8 @@ const schema = yup.object().shape({
         .required("This field is required")
 })
 
-const Edit = () => {
+export const Edit = () => {
+    useDocumentTitle("Edit brewery | Prazdroj")
     const [brewery, setBrewery] = useState({})
     const navigate = useNavigate()
     const { id } = useParams()
@@ -47,6 +49,14 @@ const Edit = () => {
             })
     }, [])
 
+    const handleChange = (e) => {
+        setBrewery({
+            ...brewery,
+            [e.target.name]: e.target.value
+        })
+        // alert(e.target.name)
+    }
+
     const onSubmit = (data) => {
         const brewery = {
             name: data.name,
@@ -69,7 +79,8 @@ const Edit = () => {
 
     return (
         <main>
-            <h1>Edit Book</h1>
+            <h1>Edit brewery</h1>
+            <h2>{brewery.name}</h2>
             <form onSubmit={ handleSubmit(onSubmit) }>
                 <div>
                     <Controller
@@ -80,6 +91,7 @@ const Edit = () => {
                                 {...field}
                                 type="text"
                                 value={brewery.name}
+                                onChange={handleChange}
                                 placeholder="Enter brewery name"
                             />
                         )}
@@ -95,6 +107,7 @@ const Edit = () => {
                                 {...field}
                                 type="text"
                                 value={brewery.address}
+                                onChange={handleChange}
                                 placeholder="Enter brewery address"
                             />
                         )}
@@ -110,6 +123,7 @@ const Edit = () => {
                                 {...field}
                                 type="text"
                                 value={brewery.phoneNumber}
+                                onChange={handleChange}
                                 placeholder="Enter brewery phone number"
                             />
                         )}
@@ -125,6 +139,7 @@ const Edit = () => {
                                 {...field}
                                 type="email"
                                 value={brewery.email}
+                                onChange={handleChange}
                                 placeholder="Enter brewery email"
                             />
                         )}

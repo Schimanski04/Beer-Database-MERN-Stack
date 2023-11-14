@@ -28,6 +28,10 @@ const beerSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        // photo: {
+        //     type: String,
+        //     required: true
+        // }
     },
     {
         timestamps: true

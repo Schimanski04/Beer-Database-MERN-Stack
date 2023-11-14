@@ -3,12 +3,14 @@ import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { Link, useLocation } from "react-router-dom"
 import "./header.scss"
 
-const Header = () => {
+export const Header = () => {
     const location = useLocation()
 
     return (
         <header className="header">
-            <Link to="/" className="logo">Beer Database</Link>
+            <Link to="/" className="logo">
+                <img src="/pilsner-urquell-logo-text.png" alt="" />
+            </Link>
 
             <nav className="navbar">
                 {
@@ -19,6 +21,9 @@ const Header = () => {
                 }
                 {
                     location.pathname == "/breweries" ? <Link to="/breweries" className="active">Breweries</Link> : <Link to="/breweries">Breweries</Link>
+                }
+                {
+                    location.pathname == "/contacts" ? <Link to="/contacts" className="active">Contacts</Link> : <Link to="/contacts">Contacts</Link>
                 }
             </nav>
 

@@ -1,9 +1,9 @@
 @import "../../variables";
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
     width: 100%;
     padding: 30px 8%;
     background: transparent;
@@ -12,23 +12,43 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    border-top: 8px solid $myGold;
 
-    .logo {
-        font-size: 25px;
-        color: #222;
-        text-decoration: none;
-        font-weight: 600;
+    .logo img {
+        width: 275px;
+        height: auto;
     }
 
-    a {
-        font-size: 18px;
+    .navbar a {
+        font-size: 1.3rem;
         color: #222;
         text-decoration: none;
         font-weight: 500;
         margin: 0 20px;
+        display: inline-block;
+        position: relative;
+        opacity: 0.75;
 
         &:hover, &.active {
-            color: $myBlue;
+            opacity: 1;
+        }
+
+        &::before {
+            transition: 300ms;
+            height: 3px;
+            content: "";
+            position: absolute;
+            background-color: $myGold;
+            width: 0%;
+            bottom: -2.5px;
+        }
+        
+        &:hover::before {
+            width: 100%;
+        }
+
+        &.active::before {
+            width: 100%;
         }
     }
 
@@ -57,7 +77,7 @@
 
             &:hover {
                 svg {
-                    color: $myBlue;
+                    color: $myGold;
                 }
             }
         }

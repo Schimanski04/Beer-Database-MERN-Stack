@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
-const Main = () => {
+export const Main = () => {
+    useDocumentTitle("Home | Prazdroj")
+
     return (
         <main>
             <h1>Beer Database</h1>

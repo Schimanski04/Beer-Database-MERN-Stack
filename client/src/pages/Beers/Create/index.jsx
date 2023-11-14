@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
 const schema = yup.object().shape({
     name: yup
@@ -21,10 +22,17 @@ const schema = yup.object().shape({
         .required("This field is required"),
     breweryId: yup
         .string()
-        .required("This field is required")
+        .required("This field is required"),
+    // photo: yup
+    //     .mixed()
+    //     .required("You need to provide a file")
+    //     .test("fileSize", "The file is too large", (file) => {
+    //         return file && file.size <= 2000000
+    //     })
 })
 
-const Create = () => {
+export const Create = () => {
+    useDocumentTitle("New beer | Prazdroj")
     const [breweries, setBreweries] = useState([])
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
@@ -43,12 +51,16 @@ const Create = () => {
     }, [])
 
     const onSubmit = (data) => {
+        // data.preventDefault()
+        // alert(JSON.stringify(data))
+
         const beer = {
             name: data.name,
             description: data.description,
             alcoholContent: data.alcoholContent,
             typeOfBeer: data.typeOfBeer,
-            breweryId: data.breweryId
+            breweryId: data.breweryId,
+            // photo: data.photo,
         }
 
         axios

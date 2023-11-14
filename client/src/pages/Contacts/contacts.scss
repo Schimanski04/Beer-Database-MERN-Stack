@@ -1,0 +1,10 @@
+.contacts {
+    width: 100%;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr;
+
+    // div:nth-child(1) {
+    //     border-right: 1px solid red;
+    // }
+}

@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom"
 import "./App.scss"
 
 import Header from "./components/Header"
-import Footer from "./components/Footer"
 
 // General pages
 import Main from "./pages/Main"
+import Contacts from "./pages/Contacts"
 
 // Beers pages
 import IndexBeers from "./pages/Beers/Index"
@@ -19,15 +19,15 @@ import IndexBreweries from "./pages/Breweries/Index"
 import CreateBreweries from "./pages/Breweries/Create"
 import DetailsBreweries from "./pages/Breweries/Details"
 import EditBreweries from "./pages/Breweries/Edit"
-import DeleteBreweries from "./pages/Breweries/Delete"
 
-const App = () => {
+export const App = () => {
     return (
         <>
             <Header />
 
             <Routes>
                 <Route path="/" element={ <Main /> } />
+                <Route path="/contacts" element={ <Contacts /> } />
 
                 <Route path="/beers" element={ <IndexBeers /> } />
                 <Route path="/beers/create" element={ <CreateBeers /> } />
@@ -39,10 +39,7 @@ const App = () => {
                 <Route path="/breweries/create" element={ <CreateBreweries /> } />
                 <Route path="/breweries/details/:id" element={ <DetailsBreweries /> } />
                 <Route path="/breweries/edit/:id" element={ <EditBreweries /> } />
-                <Route path="/breweries/delete/:id" element={ <DeleteBreweries /> } />
             </Routes>
-
-            {/* <Footer /> */}
         </>
     )
 }

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
 const schema = yup.object().shape({
     name: yup
@@ -24,8 +25,10 @@ const schema = yup.object().shape({
         .required("This field is required")
 })
 
-const Edit = () => {
+export const Edit = () => {
+    useDocumentTitle("Edit beer | Prazdroj")
     const [beer, setBeer] = useState({})
+    const [breweries, setBreweries] = useState([])
     const navigate = useNavigate()
     const { id } = useParams()
     const { enqueueSnackbar } = useSnackbar()
@@ -46,6 +49,15 @@ const Edit = () => {
             })
             .catch((error) => {
                 alert("An error happened. Please check console")
+                console.log(error)
+            })
+
+        axios
+            .get("http://localhost:5000/breweries/")
+            .then((response) => {
+                setBreweries(response.data.data)
+            })
+            .catch((error) => {
                 console.log(error)
             })
     }, [])

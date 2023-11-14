@@ -1,8 +1,34 @@
 import express from "express"
+import multer from "multer"
+import { v4 as uuidv4 } from "uuid"
+import path from "path"
 import { Beer } from "../models/beerModel.js"
 
 const router = express.Router()
 
+// #region file upload settings
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, "./images")
+//     },
+//     filename: function(req, file, cb) {   
+//         cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname))
+//     }
+// })
+
+// const fileFilter = (req, file, cb) => {
+//     const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"]
+//     if (allowedFileTypes.includes(file.mimetype)) {
+//         cb(null, true)
+//     } else {
+//         cb(null, false)
+//     }
+// }
+
+// let upload = multer({ storage, fileFilter })
+// #endregion
+
+// #region HTTP requests
 router.get("/", async (request, response) => {
     try {
         const beers = await Beer.find({})
@@ -84,5 +110,6 @@ router.delete("/:id", async (request, response) => {
         return response.status(500).send({ message: error.message })
     }
 })
+// #endregion
 
 export default router
